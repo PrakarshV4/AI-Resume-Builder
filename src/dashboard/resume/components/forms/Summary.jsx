@@ -6,18 +6,37 @@ import { useParams } from 'react-router-dom';
 import GlobalApi from '../../../../../service/GlobalApi';
 import { toast } from 'sonner';
 import { Brain, LoaderCircle } from 'lucide-react';
+import { AIChatSession } from '../../../../../service/AIModel';
+
+
+const prompt = "Job title: {jobTitle}, Depends on job title give summary within 4 to 5 lines in JSON format with fields: experience Level and summary with experience level for Fresher, Mid-level, Experienced.";
+
 
 function Summary({enabledNext}) {
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
     const [summary, setSummary] = useState();
     const [loading, setLoading] = useState(false);
     const params = useParams();
+    const [aiGeneratedSummaryList,setAiGeneratedSummaryList] = useState();
     useEffect(()=>{
         summary&&setResumeInfo({
             ...resumeInfo,
             summary: summary
         })
     },[summary])
+    
+    const GenerateSummaryFromAI = async()=>{
+        setLoading(true);
+       
+        const PROMPT = prompt.replace('{jobTitle}', resumeInfo?.jobTitle)
+        console.log(PROMPT);
+        
+        const result = await AIChatSession.sendMessage(PROMPT);
+        console.log(JSON.parse('['+result.response.text() + ']'));
+     
+        setAiGeneratedSummaryList(JSON.parse('['+result.response.text() + ']'));
+        setLoading(false);
+    }
 
     const onSave = (e)=>{
         e.preventDefault();
@@ -46,7 +65,7 @@ function Summary({enabledNext}) {
             <form className='mt-7' onSubmit={onSave}>
                 <div className='flex justify-between items-end'>
                     <label>Add Summary</label>
-                    <Button type='button' variant="outline" size="sm" className="border-primary text-primary flex gap-2"><Brain className='h-4 w-4'/> Generate from AI</Button>
+                    <Button onClick={()=>GenerateSummaryFromAI()} type='button' variant="outline" size="sm" className="border-primary text-primary flex gap-2"><Brain className='h-4 w-4'/> Generate from AI</Button>
                 </div>
                 <Textarea required className="mt-5" onChange={(e)=>{setSummary(e.target.value)}}/>
 
@@ -57,6 +76,16 @@ function Summary({enabledNext}) {
                 </div>
             </form>
         </div>
+
+        {aiGeneratedSummaryList&& <div className='mt-7'>
+            <h2 className='font-bold text-lg'>Suggestions</h2>
+            {aiGeneratedSummaryList.map((item,index)=>(
+                <div key={index}>
+                    <h2 className='font-bold my-1'>Level: {item?.ExperienceLevel}</h2>
+                    <p>{item?.Summary}</p>
+                </div>
+            ))}
+        </div>}
     </div>
   )
 }
