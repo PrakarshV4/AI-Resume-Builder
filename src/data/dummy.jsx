@@ -7,7 +7,7 @@ export default{
     phone: 'Phone',
     email: 'Email',
     themeColor: '#ff6666',
-    summary:'sajdvnpsaaaaaaaaaaaaaaaaaaaaaajvnsjnapvo jjvpab j vapvnosuavn',
+    summary:'sajdvnpsaaaaaaaaaaaaaajvnsjnapvo jjvpab j vapvnosuavn',
     experience:[
     {
         id:1,
