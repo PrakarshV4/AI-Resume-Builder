@@ -4,6 +4,7 @@ import { ResumeInfoContext } from '@/context/ResumeInfoContext';
 import { Button } from '@/components/ui/button';
 import { LayoutGrid, LucideArrowLeft, LucideArrowRight } from 'lucide-react';
 import Summary from './forms/Summary';
+import Experience from './forms/Experience';
 
 function FormSection() {
  
@@ -22,8 +23,11 @@ function FormSection() {
       </div>
       {/* Personal Detail */}
       {activeFormIndex==1 ? 
-      <PersonalDetail enabledNext={(v)=>setEnableNext(v)}/> : activeFormIndex==2 ? 
-      <Summary enabledNext={(v)=>setEnableNext(v)}/>: null}
+      <PersonalDetail enabledNext={(v)=>setEnableNext(v)}/> :
+       activeFormIndex==2 ? 
+      <Summary enabledNext={(v)=>setEnableNext(v)}/>: 
+      activeFormIndex==3 ? 
+      <Experience enabledNext={(v)=>setEnableNext(v)}/> : null}
       
       
       {/* Experience */}

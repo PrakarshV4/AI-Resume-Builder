@@ -81,8 +81,8 @@ function Summary({enabledNext}) {
             <h2 className='font-bold text-lg'>Suggestions</h2>
             {aiGeneratedSummaryList.map((item,index)=>(
                 <div key={index}>
-                    <h2 className='font-bold my-1'>Level: {item?.ExperienceLevel}</h2>
-                    <p>{item?.Summary}</p>
+                    <h2 className='font-bold my-1'>Level: {item?.experienceLevel}</h2>
+                    <p>{item?.summary}</p>
                 </div>
             ))}
         </div>}
