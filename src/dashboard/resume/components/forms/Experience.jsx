@@ -28,7 +28,7 @@ function Experience() {
     }
 
     const handleRichTextEditor = (e,name,index)=>{
-        const newEntries = experienceList.slice(); 
+        let newEntries = experienceList.slice(); 
         newEntries[index][name] = e.target.value;
         setExperienceList(newEntries);
     }
@@ -36,7 +36,7 @@ function Experience() {
     const AddNewExperience = ()=>{
         let newList = experienceList.slice();
         newList.push(formField);
-        console.log("formField: " + formField);
+        console.log("formField: " + JSON.stringify(formField));
         console.log("Newlist " + newList);
         setExperienceList(newList);
     }

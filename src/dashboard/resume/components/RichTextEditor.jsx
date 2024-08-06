@@ -26,8 +26,8 @@ function RichTextEditor({onRichTextEditorChange, index}) {
         const temp = JSON.parse(result.response.text()).experience_bullets;
         const resp = JSON.stringify(temp);
         console.log("response: " + resp);
-        console.log(resp.replace('[', '').replace(']', ''));
-        setValue(resp.replace('[', '').replace(']', ''));
+        console.log(resp.replace('/[/g', '').replace('/]/g', ''));
+        setValue(resp.replace('[', '').replace(']', '').replace(/","/g, ' '.replace(/"/g, ' ')));
         setLoading(false);
     }
     

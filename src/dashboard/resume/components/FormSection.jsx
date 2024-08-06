@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { LayoutGrid, LucideArrowLeft, LucideArrowRight } from 'lucide-react';
 import Summary from './forms/Summary';
 import Experience from './forms/Experience';
+import Education from './forms/Education';
 
 function FormSection() {
  
@@ -27,7 +28,9 @@ function FormSection() {
        activeFormIndex==2 ? 
       <Summary enabledNext={(v)=>setEnableNext(v)}/>: 
       activeFormIndex==3 ? 
-      <Experience enabledNext={(v)=>setEnableNext(v)}/> : null}
+      <Experience enabledNext={(v)=>setEnableNext(v)}/> : 
+      activeFormIndex == 4 ? 
+      <Education enabledNext={(v)=>setEnableNext(v)}/> : null}
       
       
       {/* Experience */}
