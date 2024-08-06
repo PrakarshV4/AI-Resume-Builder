@@ -6,6 +6,7 @@ import { LayoutGrid, LucideArrowLeft, LucideArrowRight } from 'lucide-react';
 import Summary from './forms/Summary';
 import Experience from './forms/Experience';
 import Education from './forms/Education';
+import Skills from './forms/Skills';
 
 function FormSection() {
  
@@ -30,11 +31,10 @@ function FormSection() {
       activeFormIndex==3 ? 
       <Experience enabledNext={(v)=>setEnableNext(v)}/> : 
       activeFormIndex == 4 ? 
-      <Education enabledNext={(v)=>setEnableNext(v)}/> : null}
-      
-      
-      {/* Experience */}
-      {/* Education Detail */}
+      <Education enabledNext={(v)=>setEnableNext(v)}/> : 
+      activeFormIndex==5 ? 
+      <Skills/>
+      :null}
       {/* Skills */}
     </div>
   )
