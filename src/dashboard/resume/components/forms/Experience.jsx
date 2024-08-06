@@ -3,27 +3,40 @@ import { Input } from '@/components/ui/input'
 import React, { useContext, useEffect, useState } from 'react'
 import RichTextEditor from '../RichTextEditor'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
+import { useParams } from 'react-router-dom'
+import GlobalApi from '../../../../../service/GlobalApi'
+import { LoaderCircle } from 'lucide-react'
+import { toast } from 'sonner'
 
-const formField = {
-    title:'',
-    companyName:'',
-    city:'',
-    state:'',
-    startDate:'',
-    endDate:'',
-    workSummary:''
-} 
+// const formField = {
+//     title:'',
+//     companyName:'',
+//     city:'',
+//     state:'',
+//     startDate:'',
+//     endDate:'',
+//     workSummary:''
+// } 
 function Experience() {
-    
+
+    const params = useParams();
+    const [loading, setLoading] = useState(false);
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
-    const [experienceList, setExperienceList] = useState([
-        formField,
-    ])
+    
+    const [experienceList, setExperienceList] = useState([{
+        title:'',
+        companyName:'',
+        city:'',
+        state:'',
+        startDate:'',
+        endDate:'',
+        workSummary:''
+    }])
 
     const handleChange = (index, event)=>{
-        let newEntries = experienceList.slice();  //made a copy[formfield]
+        const newEntries = experienceList.slice();  //made a copy[formfield]
         const {name, value} = event.target;
-        newEntries[index][name] = value;
+        newEntries[index] [name] = value;
         setExperienceList(newEntries);
     }
 
@@ -34,24 +47,45 @@ function Experience() {
     }
 
     const AddNewExperience = ()=>{
-        let newList = experienceList.slice();
-        newList.push(formField);
-        console.log("formField: " + JSON.stringify(formField));
-        console.log("Newlist " + newList);
-        setExperienceList(newList);
+        setExperienceList([...experienceList,{
+            title:'',
+            companyName:'',
+            city:'',
+            state:'',
+            startDate:'',
+            endDate:'',
+            workSummary:''
+        }]);
     }
 
     const RemoveExperience = ()=>{
         setExperienceList(experienceList=>experienceList.slice(0,-1))
     }
 
+    const onSave =() => {
+        setLoading(true);
+        const data={
+            data:{
+                experience:experienceList
+            }
+        }
+        GlobalApi.UpdateResumeDetail(params.resumeId, data).then(resp=>{
+            console.log(resp);
+            setLoading(false);
+            toast('Details updated!')
+        },(err)=>{
+            setLoading(false);
+            toast('Server error, please try again')
+        })
+    }
+
+    //to make sure that onChange the text is rendered on the preview
     useEffect(()=>{
         setResumeInfo({
             ...resumeInfo, 
             experience:experienceList
         })  
-        console.log(experienceList)
-        // console.log("experience list size = = "+experienceList.length)
+    
     },[experienceList])
   return (
     <div>
@@ -102,12 +136,13 @@ function Experience() {
             ))}
         </div>
         <div className='flex justify-between'>
-            <div className='flex gap-2'>
-                <Button onClick={AddNewExperience} variant='outline' className='text-primary'>+ Add More Experience</Button>
-                <Button onClick={RemoveExperience} variant='outline' className='text-primary disabled:invisible '>Remove</Button>
+                <div className='flex gap-2'>
+                    <Button onClick={AddNewExperience} variant='outline' className='text-primary'>+ Add More Education</Button>
+                    <Button onClick={RemoveExperience} variant='outline' className='text-primary disabled:invisible '>Remove</Button>
+                </div>
+                
+                <Button disabled={loading} onClick={()=>onSave()}>{loading?<LoaderCircle className='animate-spin'/> : "Save"}</Button>
             </div>
-            <Button>Save</Button>
-        </div>
     </div>
     </div>
   )

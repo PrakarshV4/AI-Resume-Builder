@@ -39,7 +39,7 @@ function Education() {
         }])
     }
     const RemoveEducation=()=>{
-        setEducationalList(educationalList => educationalList.slice(0,-1));
+        setEducationalList(educationalList=>educationalList.slice(0,-1));
     }
     const onSave =() => {
         setLoading(true);

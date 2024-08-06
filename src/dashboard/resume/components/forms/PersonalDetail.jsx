@@ -15,10 +15,7 @@ function PersonalDetail({enabledNext}) {
 
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState();
-    useEffect(()=>{
-        console.log(params);
-    },[])
-
+    
     const handleInputChange = (e)=>{
         enabledNext(false);
         const {name, value} = e.target;
@@ -39,6 +36,7 @@ function PersonalDetail({enabledNext}) {
         const data = {
             data: formData
         }
+
         GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp => {
             console.log(resp);
             enabledNext(true);
@@ -46,9 +44,15 @@ function PersonalDetail({enabledNext}) {
             toast("Detail Updated")
         },(err)=>{
             setLoading(false)
+            toast("Server Error, please try again");
         })
         enabledNext(true);
     }
+
+    useEffect(()=>{
+        setResumeInfo({...resumeInfo, formData});
+    },[formData])
+
 
     return (
     <div className='p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10'>
@@ -83,7 +87,7 @@ function PersonalDetail({enabledNext}) {
                 </div>
             </div>
             <div className='mt-2 flex justify-end'>
-                <Button disabled={loading} type='submit'>
+                <Button disabled={loading} type='submit' onClick={onSave}>
                     {loading?<LoaderCircle className='animate-spin'/>: 'Save'}
                 </Button>
             </div>
