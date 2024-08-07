@@ -33,6 +33,10 @@ function Experience() {
         workSummary:''
     }])
 
+    useEffect(()=>{
+        resumeInfo&&setExperienceList(resumeInfo?.experience)
+    },[])
+
     const handleChange = (index, event)=>{
         const newEntries = experienceList.slice();  //made a copy[formfield]
         const {name, value} = event.target;
@@ -66,7 +70,7 @@ function Experience() {
         setLoading(true);
         const data={
             data:{
-                experience:experienceList
+                experience:experienceList.map(({id,...rest})=>rest)
             }
         }
         GlobalApi.UpdateResumeDetail(params.resumeId, data).then(resp=>{
@@ -98,37 +102,37 @@ function Experience() {
                     <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
                         <div>
                             <label className='text-xs'>Position Title</label>
-                            <Input name='title' onChange={(event)=>handleChange(index,event)}/>
+                            <Input defaultValue={item.title} name='title' onChange={(event)=>handleChange(index,event)}/>
                         </div>
                         
                         <div>
                             <label className='text-xs'>Company Name</label>
-                            <Input name='companyName' onChange={(event)=>handleChange(index,event)}/>
+                            <Input defaultValue={item.companyName} name='companyName' onChange={(event)=>handleChange(index,event)}/>
                         </div>
 
                         <div>
                             <label className='text-xs'>City</label>
-                            <Input name='city' onChange={(event)=>handleChange(index,event)}/>
+                            <Input defaultValue={item.city} name='city' onChange={(event)=>handleChange(index,event)}/>
                         </div>
 
                         <div>
                             <label className='text-xs'>State</label>
-                            <Input name='state' onChange={(event)=>handleChange(index,event)}/>
+                            <Input defaultValue={item.state} name='state' onChange={(event)=>handleChange(index,event)}/>
                         </div>
                         
                         <div>
                             <label className='text-xs'>Start Date</label>
-                            <Input type='date' name='startDate' onChange={(event)=>handleChange(index,event)}/>
+                            <Input defaultValue={item.startDate} type='date' name='startDate' onChange={(event)=>handleChange(index,event)}/>
                         </div>
                         
                         <div>
                             <label className='text-xs'>End Date</label>
-                            <Input type='date' name='endDate' onChange={(event)=>handleChange(index,event)}/>
+                            <Input defaultValue={item.endDate} type='date' name='endDate' onChange={(event)=>handleChange(index,event)}/>
                         </div>
                         
                         <div className='col-span-2'>
                             {/* Work Summary */}
-                            <RichTextEditor index={index} onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummary',index)}/>
+                            <RichTextEditor defaultValue={item?.workSummary} index={index} onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummary',index)}/>
                         </div>
 
                     </div>

@@ -18,6 +18,11 @@ function Summary({enabledNext}) {
     const [loading, setLoading] = useState(false);
     const params = useParams();
     const [aiGeneratedSummaryList,setAiGeneratedSummaryList] = useState();
+    
+    useEffect(()=>{
+        resumeInfo&&setSummary(resumeInfo?.summary);
+    },[])
+
     useEffect(()=>{
         summary&&setResumeInfo({
             ...resumeInfo,
@@ -67,7 +72,7 @@ function Summary({enabledNext}) {
                     <label>Add Summary</label>
                     <Button onClick={()=>GenerateSummaryFromAI()} type='button' variant="outline" size="sm" className="border-primary text-primary flex gap-2"><Brain className='h-4 w-4'/> Generate from AI</Button>
                 </div>
-                <Textarea required className="mt-5" onChange={(e)=>{setSummary(e.target.value)}}/>
+                <Textarea defaultValue={resumeInfo?.summary} required className="mt-5" onChange={(e)=>{setSummary(e.target.value)}}/>
 
                 <div className='mt-2 flex justify-end'>
                 <Button disabled={loading} type='submit'>

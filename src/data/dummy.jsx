@@ -65,23 +65,23 @@ export default{
     }],
     skills:[{
         id:1,
-        name:'Angular',
-        rating:20
+        name:'React',
+        rating:2
     },{
         id:2,
         name:'Angular',
-        rating:80
+        rating:3
     },{
         id:3,
-        name:'Angular',
-        rating:60
+        name:'Javascript',
+        rating:1
     },{
         id:4,
-        name:'Angular',
-        rating:35
+        name:'C++',
+        rating:4
     },{
         id:5,
-        name:'Angular',
-        rating:80
+        name:'C',
+        rating:4
     }]
 }

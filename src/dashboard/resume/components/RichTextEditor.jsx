@@ -8,9 +8,9 @@ import { toast } from 'sonner';
 
 const PROMPT = 'position title:{positionTitle} ,Depending upon the position title give me 5 points for my experience in resume. give me result inside a experience_bullets in JSON.';
 
-function RichTextEditor({onRichTextEditorChange, index}) {
+function RichTextEditor({onRichTextEditorChange, index, defaultValue}) {
 
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(defaultValue);
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext)
     const [loading,setLoading] = useState(false);
 

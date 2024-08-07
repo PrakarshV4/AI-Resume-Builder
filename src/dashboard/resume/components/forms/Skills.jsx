@@ -20,6 +20,10 @@ function Skills() {
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
     const {resumeId} = useParams();
 
+    useEffect(()=>{
+        resumeInfo&&setSkillsList(resumeInfo?.skills);
+    },[])
+
     const handleChange=(index, name, value)=>{
         const newEntries = skillsList.slice();
         newEntries[index][name] = value;
@@ -41,7 +45,7 @@ function Skills() {
         setLoading(true);
         const data = {
             data:{
-                skills: skillsList
+                skills: skillsList.map(({id,...rest})=> rest)
             }
         }
         GlobalApi.UpdateResumeDetail(resumeId, data).then(resp=>{
@@ -72,10 +76,10 @@ function Skills() {
                 <div className='flex justify-between items-center border rounded-lg p-3 my-2 gap-2' key={index}>
                     <div>
                         <label className='text-xs'>Name</label>
-                        <Input onChange={(e)=>handleChange(index,'name',e.target.value)}/>
+                        <Input defaultValue={item?.name} onChange={(e)=>handleChange(index,'name',e.target.value)}/>
                     </div>
                     <div >
-                        <Rating style={{ maxWidth: 120 }} value={item.rating} onChange={(v)=>handleChange(index,'rating',v)} />
+                        <Rating style={{ maxWidth: 120 }} value={item?.rating} onChange={(v)=>handleChange(index,'rating',v)} />
                     </div>
                 </div>
             ))}
