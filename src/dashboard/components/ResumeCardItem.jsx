@@ -46,7 +46,9 @@ function ResumeCardItem({resume ,refreshData}) {
   return (
   <div >
     <Link to={'/dashboard/resume/'+resume.documentId+'/edit'}>
-      <div className='p-14 rounded-t-lg bg-gradient-to-b from-pink-200 via-purple-300 to-blue-300 flex justify-center items-center hover:bg-gradient-to-l hover:transition-all h-[280px] border-t-4 border-red-400 hover:scale-100 transition-all hover:shadow-md shadow-primary mb-0'>
+      <div className={`p-14 rounded-t-lg bg-gradient-to-b from-pink-200 via-purple-300 to-blue-300 flex justify-center items-center hover:bg-gradient-to-l hover:transition-all h-[280px] border-t-4 border-red-400 hover:scale-100 transition-all hover:shadow-md shadow-primary mb-0`} style={{
+      borderColor:resume?.themeColor
+    }}>
         <Notebook/>
       </div>
     </Link>
