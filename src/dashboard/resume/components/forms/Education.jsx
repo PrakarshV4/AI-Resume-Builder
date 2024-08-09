@@ -52,7 +52,7 @@ function Education() {
                 education:educationalList.map(({id,...rest})=>rest)
             }
         }
-        GlobalApi.UpdateResumeDetail(params.resumeId, data).then(resp=>{
+        GlobalApi.UpdateResumeDetail(params.documentId, data).then(resp=>{
             console.log(resp);
             setLoading(false);
             toast('Details updated!')

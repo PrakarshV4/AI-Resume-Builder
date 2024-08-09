@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import FormSection from '../../components/FormSection';
-import ResumePreview from '../../components/ResumePreview';
+import FormSection from '../../../components/FormSection';
+import ResumePreview from '../../../components/ResumePreview';
 import { ResumeInfoContext } from '@/context/ResumeInfoContext';
 import dummy from '@/data/dummy';
-import GlobalApi from '../../../../../service/GlobalApi';
+import GlobalApi from '../../../../../../service/GlobalApi';
 
-function EditResume() {
+function EditResume2() {
 
-    const {resumeId} = useParams(); //to get resumeId from params
+    const params = useParams(); //to get resumeId from params
     const [resumeInfo, setResumeInfo] = useState();
     useEffect(()=>{
         setResumeInfo(dummy);
@@ -16,9 +16,9 @@ function EditResume() {
     },[])
 
     const GetResumeInfo = ()=>{
-      GlobalApi.GetResumeById(resumeId).then(resp=>{
+      GlobalApi.GetResumeById(params.documentId).then(resp=>{
         // console.log(resp.data.data);
-        setResumeInfo(resp.data.data)
+        setResumeInfo(resp.data.data.attributes)
       })
     }
 
@@ -35,4 +35,4 @@ function EditResume() {
   )
 }
 
-export default EditResume
+export default EditResume2

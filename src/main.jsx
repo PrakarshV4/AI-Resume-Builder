@@ -9,6 +9,8 @@ import Dashboard from './dashboard/index.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
 import EditResume from './dashboard/resume/[resumeId]/edit/index.jsx'
 import ViewResume from './my-resume/[resumeId]/view/index.jsx'
+import EditResume2 from './dashboard/resume/[documentId]/[resumeId]/edit/index.jsx'
+import ViewResume2 from './my-resume/[documentId]/[resumeId]/view/index.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY //for clerk
 if (!PUBLISHABLE_KEY) {
@@ -24,7 +26,11 @@ const router = createBrowserRouter([{
     {
       path: '/dashboard/resume/:resumeId/edit',
       element: <EditResume/>
-    }
+    },
+    {
+      path: '/dashboard/resume/:documentId/:resumeId/edit',
+      element: <EditResume2/>
+    },
   ]
   },
   {
@@ -38,6 +44,10 @@ const router = createBrowserRouter([{
   {
     path: '/my-resume/:resumeId/view',
     element: <ViewResume/>
+  },
+  {
+    path: '/my-resume/:documentId/:resumeId/view',
+    element: <ViewResume2/>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

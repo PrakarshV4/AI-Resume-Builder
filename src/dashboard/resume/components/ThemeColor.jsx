@@ -17,7 +17,7 @@ function ThemeColor() {
 
     const [selectedColor, setSelectedColor] = useState()
 
-    const {resumeId} = useParams();
+    const params = useParams();
     const colors=[
         "#FF5733", "#3357FF","#EB51D1","#A51BF5","#1B22F5","#1B79F5","#1BC2F5","#1BF5B3","#1BF531","#22CB0F","#F3EC1E","#F3C11E","#F3811E","#F3651E",'#F33A1E'
     ]
@@ -33,7 +33,7 @@ function ThemeColor() {
                 themeColor: color
             }
         }
-        GlobalApi.UpdateResumeDetail(resumeId,data).then(resp=>{
+        GlobalApi.UpdateResumeDetail(params.documentId , data).then(resp=>{
             console.log(resp);
             toast('Theme Color updated')
         })

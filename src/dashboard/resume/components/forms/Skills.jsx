@@ -18,7 +18,7 @@ function Skills() {
 
     const [loading, setLoading] = useState(false);
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
-    const {resumeId} = useParams();
+    const params = useParams();
 
     useEffect(()=>{
         resumeInfo&&setSkillsList(resumeInfo?.skills);
@@ -48,7 +48,7 @@ function Skills() {
                 skills: skillsList.map(({id,...rest})=> rest)
             }
         }
-        GlobalApi.UpdateResumeDetail(resumeId, data).then(resp=>{
+        GlobalApi.UpdateResumeDetail(params.documentId, data).then(resp=>{
             console.log(resp);
             setLoading(false);
             toast('Details updated!')

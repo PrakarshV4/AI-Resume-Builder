@@ -11,11 +11,17 @@ import { toast } from "sonner"
 function PersonalDetail({enabledNext}) {
   
     const params = useParams();
+    // console.log(params)
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
 
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState();
     
+    useEffect(()=>{
+        resumeInfo&&setFormData(resumeInfo)
+    
+    },[])
+
     const handleInputChange = (e)=>{
         enabledNext(false);
         const {name, value} = e.target;
@@ -37,7 +43,7 @@ function PersonalDetail({enabledNext}) {
             data: formData
         }
 
-        GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(resp => {
+        GlobalApi.UpdateResumeDetail(params?.documentId,data).then(resp => {
             console.log(resp);
             enabledNext(true);
             setLoading(false);
@@ -51,6 +57,7 @@ function PersonalDetail({enabledNext}) {
 
     useEffect(()=>{
         setResumeInfo({...resumeInfo, formData});
+        
     },[formData])
 
 

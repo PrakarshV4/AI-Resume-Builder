@@ -4,10 +4,11 @@ import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import ResumePreview from '@/dashboard/resume/components/ResumePreview'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import GlobalApi from '../../../../service/GlobalApi'
+import GlobalApi from '../../../../../service/GlobalApi'
 import { RWebShare } from 'react-web-share'
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-function ViewResume() {
+function ViewResume2() {
     
     const [resumeInfo , setResumeInfo] = useState();
     const params = useParams();
@@ -38,15 +39,38 @@ function ViewResume() {
                 <div className='flex justify-between px-44 my-10'>
                     <Button onClick={HandleDownload}>Download</Button>
                     
-                    <RWebShare data={{
+                    <RWebShare
+                        data={{
+                        text: "Like humans, flamingos make friends for life",
+                        url: "https://on.natgeo.com/2zHaNup",
+                        title: "Flamingos",
+                        }}
+                        onClick={() => console.log("shared successfully!")}
+                    >
+                        <Button>Share</Button>
+                    </RWebShare>
+                    
+                    
+                    
+                    {/* <RWebShare
+                        data={{
+                        text: "Hi There, this is my Resume! Please click the link below to my resume",
+                        url: "https://on.natgeo.com/2zHaNup",
+                        title: "Share this article on Flamingos"
+                        }}
+                        onClick={() => console.info("share successful!")}
+                    >
+                        <button>Share</button>
+                    </RWebShare> */}
+                    {/* <RWebShare data={{
                         text: "Hi there, this is my resum. Please click the link below to see resume",
-                        url: 'http://localhost:1337/api'+'/my-resume/'+params.resumeId+'/view',
+                        url: import.meta.env.VITE_BASE_URL+'/my-resume/'+params.documentId+'/'+params.resumeId+'/view',
                         title: resumeInfo?.firstName+' '+resumeInfo?.lastName+' resume',
                         }}
                         onClick={() => console.log("Shared successfully!")}
                     >
                         <Button>Share</Button>
-                    </RWebShare>
+                    </RWebShare> */}
                 </div>  
             </div>
         </div>
@@ -59,4 +83,4 @@ function ViewResume() {
   )
 }
 
-export default ViewResume
+export default ViewResume2

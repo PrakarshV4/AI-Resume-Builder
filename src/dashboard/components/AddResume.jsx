@@ -41,7 +41,9 @@ function AddResume() {
             // console.log(resp);
             if(resp){
                 setLoading(false);
-                navigation('/dashboard/resume/'+resp.data.data.documentId+'/edit');//reumeiD is passed
+                // console.log(resp.data.data.id);
+                let documentId = resp.data.data.id;
+                navigation('/dashboard/resume/'+documentId+'/'+resp.data.data.attributes.resumeId+'/edit');//reumeiD is passed
             }
         },(error)=>{
             setLoading(false);

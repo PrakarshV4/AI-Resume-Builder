@@ -16,8 +16,8 @@ export default{
         city:'Raipur',
         state:"Chhattisgarh",
         currentlyWorking:'Yes',
-        startDate:'04-10-2012',
-        endDate:'2014',
+        startDate:'2024-08-01',
+        endDate:'2024-08-01',
         workSummary:'Implemented a new user authentication system and refactored the legacy codebase, improving performance by 25%. Integrated a new payment gateway, increasing successful transactions by 15%. Resolved server downtime issues with load balancing and optimized configurations. Developed a customizable dashboard feature, boosting user engagement by 20%. Continuing to work on a real-time chat feature and enhancing mobile responsiveness.',
     
     },
@@ -27,8 +27,8 @@ export default{
         companyName:'test2',
         city:'Raipur',
         state:"Chhattisgarh",
-        startDate:'04-10-2012',
-        endDate:'2014',
+        startDate:'2024-08-01',
+        endDate:'2024-08-01',
         workSummary:'Implemented a new user authentication system and refactored the legacy codebase, improving performance by 25%. Integrated a new payment gateway, increasing successful transactions by 15%. Resolved server downtime issues with load balancing and optimized configurations. Developed a customizable dashboard feature, boosting user engagement by 20%. Continuing to work on a real-time chat feature and enhancing mobile responsiveness.',
         // education:[{
         //     universityName:'NIT Raipur',
@@ -43,24 +43,24 @@ export default{
         universityName:'NIT Raipur',
         degree: 'B.tech',
         major: 'Electrical Engineering',
-        startDate:'July 2021',
-        endDate:'2025 August',
+        startDate:'2024-08-01',
+        endDate:'2024-08-01',
         description:'Electrical engineering involves the study and application of electricity, electronics, and electromagnetism to design and develop electrical systems and devices.'
     },
     {
         universityName:'NIT Raipur',
         degree: 'B.tech',
         major: 'Electrical Engineering',
-        startDate:'July 2021',
-        endDate:'2025 August',
+        startDate:'2024-08-01',
+        endDate:'2024-08-01',
         description:'Electrical engineering involves the study and application of electricity, electronics, and electromagnetism to design and develop electrical systems and devices.'
     },
     {
         universityName:'NIT Raipur',
         degree: 'B.tech',
         major: 'Electrical Engineering',
-        startDate:'July 2021',
-        endDate:'2025 August',
+        startDate:'2024-08-01',
+        endDate:'2024-08-01',
         description:'Electrical engineering involves the study and application of electricity, electronics, and electromagnetism to design and develop electrical systems and devices.'
     }],
     skills:[{

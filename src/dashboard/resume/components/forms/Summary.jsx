@@ -14,6 +14,7 @@ const prompt = "Job title: {jobTitle}, Depends on job title give summary within 
 
 function Summary({enabledNext}) {
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
+    // console.log(resumeInfo);
     const [summary, setSummary] = useState();
     const [loading, setLoading] = useState(false);
     const params = useParams();
@@ -52,13 +53,14 @@ function Summary({enabledNext}) {
             }
         }
 
-        GlobalApi.UpdateResumeDetail(params?.resumeId , data).then(resp=>{
+        GlobalApi.UpdateResumeDetail(params?.documentId , data).then(resp=>{
             console.log(resp);
             enabledNext(true);
             setLoading(false);
             toast("Summary Updated")
         },(err)=>{
             setLoading(false);
+            toast("Server error")
         })
     }
   return (
