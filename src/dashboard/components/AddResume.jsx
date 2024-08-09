@@ -23,6 +23,7 @@ function AddResume() {
     const userEmail = user?.primaryEmailAddress?.emailAddress;
     
     const [loading, setLoading] = useState(false);
+    
     const onCreate = async ()=>{
         setLoading(true);
         
@@ -40,7 +41,7 @@ function AddResume() {
             // console.log(resp);
             if(resp){
                 setLoading(false);
-                navigation('/dashboard/resume/'+resp.data.data.documentId+'/edit');
+                navigation('/dashboard/resume/'+resp.data.data.documentId+'/edit');//reumeiD is passed
             }
         },(error)=>{
             setLoading(false);
@@ -59,7 +60,7 @@ function AddResume() {
             <DialogHeader>
             <DialogTitle>Create New Resume</DialogTitle>
             <DialogDescription>
-                <p>Add title for your new resume</p>
+                Add title for your new resume
                 <Input className='my-2' placeholder='Eg. Full Stack resume'
                 onChange={(e)=> setResumeTitle(e.target.value)}/>
             </DialogDescription>
