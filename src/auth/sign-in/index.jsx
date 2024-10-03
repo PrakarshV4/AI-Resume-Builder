@@ -3,8 +3,8 @@ import React from 'react'
 
 function SignInPage() {
   return (
-    <div className='flex justify-center items-center my-20'>
-      <SignIn ></SignIn>
+    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-500 flex flex-col justify-center items-center">
+        <SignIn />
     </div>
   )
 }

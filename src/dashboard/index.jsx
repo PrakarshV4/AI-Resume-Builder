@@ -15,13 +15,13 @@ function Dashboard() {
   
   //used to get user resume list from their email address
   const GetResumeList = ()=>{
-    GlobalApi.GetUserResumes(user?.primaryEmailAddress?.emailAddress).then(resp=>{
+    GlobalApi.GetUserResumes(user?.primaryEmailAddress?.emailAddress).then(async(resp)=>{;
       setResumeList(resp.data.data);
     })
   }
   
   return (
-    <div className='p-10 md:px-20 lg:px-32'>
+    <div className='p-10 md:px-20 lg:px-32 '>
       <h2 className='font-bold text-3xl'>My Resume</h2>
       <p>Start creating AI resume to start your next Job role</p>
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-10'>

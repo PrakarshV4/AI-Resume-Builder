@@ -34,7 +34,10 @@ function Experience() {
     }])
 
     useEffect(()=>{
+        console.log("resume")
+        console.log(resumeInfo)
         resumeInfo&&setExperienceList(resumeInfo?.experience)
+        console.log(experienceList)
     },[])
 
     const handleChange = (index, event)=>{

@@ -21,29 +21,27 @@ function AddResume() {
     const navigation = useNavigate();
     const {user} = useUser();
     const userEmail = user?.primaryEmailAddress?.emailAddress;
-    
+    // console.log(user)
     const [loading, setLoading] = useState(false);
     
     const onCreate = async ()=>{
         setLoading(true);
-        
         const uuid = uuidv4();
         const data = {
             data:{
                 title: resumeTitle,
-                resumeId:uuid,
+                resumeId: uuid,
                 userEmail:userEmail,
                 userName:user?.fullName
             }
         }
-
+        console.log(data)
         GlobalApi.CreateNewResume(data).then(resp=>{
-            // console.log(resp);
             if(resp){
+                console.log(resp)
                 setLoading(false);
-                // console.log(resp.data.data.id);
-                let documentId = resp.data.data.id;
-                navigation('/dashboard/resume/'+documentId+'/'+resp.data.data.attributes.resumeId+'/edit');//reumeiD is passed
+                let documentId = resp.data.data.documentId;
+                navigation('/dashboard/resume/'+documentId+'/'+resp.data.data.resumeId+'/edit');//reumeiD is passed
             }
         },(error)=>{
             setLoading(false);

@@ -15,15 +15,10 @@ function ResumePreview() {
     style={{
         borderColor: resumeInfo?.themeColor
     }}>
-        {/* Personal Details */}
         <PersonalDetailPreview resumeInfo={resumeInfo}/>
-        {/* Summary  */}
         <SummaryPreview resumeInfo={resumeInfo}/>
-        {/* Profesional Experience  */}
         <ExperiencePreview resumeInfo={resumeInfo}/>
-        {/* Education  */}
         <EducationPreview resumeInfo={resumeInfo} />
-        {/* Skills  */}
         <SkillsPreview resumeInfo={resumeInfo}/>
     </div>
   )

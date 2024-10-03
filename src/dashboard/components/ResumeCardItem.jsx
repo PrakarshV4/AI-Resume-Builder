@@ -25,14 +25,14 @@ import { toast } from 'sonner'
 
 
 function ResumeCardItem({resume ,refreshData}) {
-  // console.log(resume.attributes)
+  console.log(resume)
   const navigate = useNavigate();
   const [openAlert, setOpenAlert] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const onDelete=()=>{
     setLoading(true);
-    GlobalApi.DeleteResumeById(resume.id).then(resp=>{
+    GlobalApi.DeleteResumeById(resume.documentId).then(resp=>{
       // console.log(resp);
       toast('Resume deleted successfully!');
       refreshData();
@@ -45,26 +45,26 @@ function ResumeCardItem({resume ,refreshData}) {
   }
   return (
   <div >
-    <Link to={'/dashboard/resume/'+resume.id+'/'+resume.attributes.resumeId+'/edit'}>
+    <Link to={'/dashboard/resume/'+resume.documentId+'/'+resume.resumeId+'/edit'}>
       <div className={`p-14 rounded-t-lg bg-gradient-to-b from-pink-200 via-purple-300 to-blue-300 flex justify-center items-center hover:bg-gradient-to-l hover:transition-all h-[280px] border-t-4 border-red-400 hover:scale-100 transition-all hover:shadow-md shadow-primary mb-0`} style={{
-      borderColor:resume.attributes?.themeColor
+      borderColor:resume?.themeColor
     }}>
         <Notebook/>
       </div>
     </Link>
     <div className='border p-3 flex justify-between text-white bg-red-400 rounded-b-lg' style={{
-      background:resume.attributes?.themeColor
+      background:resume?.themeColor
     }}>
-      <h2 className='text-sm'>{resume.attributes.title}</h2>
+      <h2 className='text-sm'>{resume.title}</h2>
       <div className='cursor-pointer'>
       <DropdownMenu className='cursor-pointer'>
         <DropdownMenuTrigger>
           <MoreVertical className='h-4 w-4 cursor-pointer'/>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>navigate('/dashboard/resume/'+resume.id+'/edit')}>Edit</DropdownMenuItem>
-          <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>navigate('/my-resume/'+resume.id+'/view')}>View</DropdownMenuItem>
-          <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>navigate('/my-resume/'+resume.id+'/view')}>Download</DropdownMenuItem>
+          <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>navigate('/dashboard/resume/'+resume.documentId+'/edit')}>Edit</DropdownMenuItem>
+          <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>navigate('/my-resume/'+resume.documentId+'/view')}>View</DropdownMenuItem>
+          <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>navigate('/my-resume/'+resume.documentId+'/view')}>Download</DropdownMenuItem>
           <DropdownMenuItem className='hover:cursor-pointer' onClick={()=>setOpenAlert(true)}>Delete</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

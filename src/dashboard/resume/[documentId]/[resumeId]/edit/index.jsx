@@ -18,7 +18,7 @@ function EditResume2() {
     const GetResumeInfo = ()=>{
       GlobalApi.GetResumeById(params.documentId).then(resp=>{
         // console.log(resp.data.data);
-        setResumeInfo(resp.data.data.attributes)
+        setResumeInfo(resp.data.data)
       })
     }
 

@@ -12,15 +12,14 @@ function ViewResume2() {
     
     const [resumeInfo , setResumeInfo] = useState();
     const params = useParams();
-    console.log(params);
 
     useEffect(()=>{
         GetResumeInfo();
     },[])
     const GetResumeInfo=()=>{
         GlobalApi.GetResumeById(params.documentId).then(resp=>{
-            console.log(resp.data.data);
-            setResumeInfo(resp.data.data.attributes);
+            // console.log(resp.data.data);
+            setResumeInfo(resp.data.data);
         })
     }
 
@@ -33,11 +32,11 @@ function ViewResume2() {
         <div id='no-print'>
             <Header/>
 
-            <div className='my-10 mx-10 md:mx-20 lg:mx-36'>
-                <h2 className='text-center text-2xl font-medium'>Your Resume is ready!</h2>
-                <p className='text-center text-gray-400'>Now you are ready to download your resume and also you can share your resume url. </p>
-                <div className='flex justify-between px-44 my-10'>
-                    <Button onClick={HandleDownload}>Download</Button>
+            <div className='my-10 mx-10 md:mx-20 lg:mx-36 bg-gradient-to-r from-purple-500 to-indigo-500 flex flex-col justify-center items-center gap-3'>
+                <h2 className='text-center mt-10 mb-2.5 text-2xl font-medium text-white'>Your Resume is ready!</h2>
+                <p className='text-center text-white'>Now you are ready to download your resume and also you can share your resume url. </p>
+                <div className='flex justify-between gap-4 px-44 my-8'>
+                    <Button className='text-white bg-purple-500' onClick={HandleDownload}>Download</Button>
                     
                     <RWebShare
                         data={{
@@ -47,7 +46,7 @@ function ViewResume2() {
                         }}
                         onClick={() => console.log("shared successfully!")}
                     >
-                        <Button>Share</Button>
+                        <Button className='bg-white text-purple-700'>Share</Button>
                     </RWebShare>
                     
                     

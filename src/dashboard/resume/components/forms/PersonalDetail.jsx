@@ -11,7 +11,6 @@ import { toast } from "sonner"
 function PersonalDetail({enabledNext}) {
   
     const params = useParams();
-    // console.log(params)
     const {resumeInfo, setResumeInfo} = useContext(ResumeInfoContext);
 
     const [loading, setLoading] = useState(false);
@@ -19,7 +18,7 @@ function PersonalDetail({enabledNext}) {
     
     useEffect(()=>{
         resumeInfo&&setFormData(resumeInfo)
-    
+        enabledNext(true);
     },[])
 
     const handleInputChange = (e)=>{
@@ -30,6 +29,7 @@ function PersonalDetail({enabledNext}) {
             ...formData,
             [name]:value
         })
+
         setResumeInfo({
             ...resumeInfo,
             [name]: value
@@ -57,7 +57,6 @@ function PersonalDetail({enabledNext}) {
 
     useEffect(()=>{
         setResumeInfo({...resumeInfo, formData});
-        
     },[formData])
 
 
